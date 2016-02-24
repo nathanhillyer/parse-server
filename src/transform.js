@@ -94,7 +94,7 @@ export function transformKeyValue(schema, className, restKey, restValue, options
                             'can only query on ' + key);
       break;
     };
-    if (options.validate && !key.match(/^[a-zA-Z][a-zA-Z0-9_\.]*$/)) {
+    if (options.validate && !key.match(/^[a-zA-Z][a-zA-Z0-9_\$\.]*$/)) {
       throw new Parse.Error(Parse.Error.INVALID_KEY_NAME,
                             'invalid key name: ' + key);
     }
@@ -649,7 +649,7 @@ function untransformObject(schema, className, mongoObject, isNestedObject = fals
           restObject['authData'][provider] = mongoObject[key];
           break;
         }
-        
+
         if (key.indexOf('_p_') == 0) {
           var newKey = key.substring(3);
           var expected;
@@ -799,4 +799,3 @@ module.exports = {
   transformWhere: transformWhere,
   untransformObject: untransformObject
 };
-
